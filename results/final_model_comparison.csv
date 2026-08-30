@@ -1,0 +1,7 @@
+Model,Test_MAPE
+Custom Model B,1.8296973551494053
+Linear Regression,2.51
+Random Forest,2.72
+LightGBM,2.74
+XGBoost,2.92
+Seasonal Naive,10.76
