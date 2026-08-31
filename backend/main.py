@@ -14,16 +14,26 @@ app = FastAPI(
 )
 
 
+# ============================================================
+# CORS
+# ============================================================
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:5173",
+        "http://127.0.0.1:5173",
+        "https://bdpowercast.netlify.app",
     ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
+
+# ============================================================
+# REQUEST MODELS
+# ============================================================
 
 class DateRequest(BaseModel):
     date: str
@@ -33,6 +43,10 @@ class MonthRequest(BaseModel):
     year: int
     month: int
 
+
+# ============================================================
+# BASIC ROUTES
+# ============================================================
 
 @app.get("/")
 def root():
@@ -48,10 +62,16 @@ def health():
     }
 
 
+# ============================================================
+# DAILY FORECAST
+# ============================================================
+
 @app.post("/predict/day")
 def predict_day(request: DateRequest):
     try:
-        return predict_date(request.date)
+        return predict_date(
+            request.date
+        )
 
     except Exception as e:
         raise HTTPException(
@@ -59,6 +79,10 @@ def predict_day(request: DateRequest):
             detail=str(e),
         )
 
+
+# ============================================================
+# MONTHLY FORECAST
+# ============================================================
 
 @app.post("/predict/month")
 def predict_month_endpoint(
