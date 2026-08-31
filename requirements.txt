@@ -1,7 +1,6 @@
-streamlit
+fastapi
+uvicorn[standard]
 pandas
 numpy
-torch
 scikit-learn
 joblib
-matplotlib
