@@ -1,0 +1,19 @@
+{
+    "reference_date": "2015-04-23",
+    "trend_feature": [
+        "trend_years"
+    ],
+    "seasonal_features": [
+        "is_friday",
+        "is_weekend",
+        "dow_sin",
+        "dow_cos",
+        "month_sin",
+        "month_cos",
+        "year_sin",
+        "year_cos",
+        "year_sin_2",
+        "year_cos_2"
+    ],
+    "dataset_end": "2025-06-16"
+}
