@@ -2,137 +2,188 @@
 
 # ⚡ BD PowerCast
 
-### Bangladesh Electricity Demand Forecasting  
-### & Load-Shedding Risk Prediction
+### Bangladesh Electricity Demand Forecasting & Load-Shedding Risk Prediction
 
-**Predict • Analyze • Plan**
+A modern forecasting platform for estimating **daily and monthly electricity demand in Bangladesh**, identifying **peak-demand periods**, and presenting a **historical load-shedding risk indicator** through an interactive web dashboard.
 
-A production-ready platform that forecasts **daily & monthly electricity demand** in Bangladesh, identifies peak periods, and shows historical load-shedding risk — all through a clean interactive dashboard.
-
-<br>
-
-[![Live App](https://img.shields.io/badge/🚀_Live_App-Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white)](https://bdpowercast.netlify.app/)
-[![API](https://img.shields.io/badge/⚙️_API-FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://bd-powercast-api.onrender.com)
+[![Live App](https://img.shields.io/badge/Live%20App-Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white)](https://bdpowercast.netlify.app/)
+[![API](https://img.shields.io/badge/API-FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://bd-powercast-api.onrender.com)
 [![React](https://img.shields.io/badge/Frontend-React-61DAFB?style=for-the-badge&logo=react&logoColor=111827)](https://react.dev/)
 [![Python](https://img.shields.io/badge/Backend-Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
-[![CI/CD](https://img.shields.io/badge/CI%2FCD-GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)](https://github.com/YOUR_USERNAME/bd-powercast/actions)
 
-<br>
-
-**🌐 Live Website** → [bdpowercast.netlify.app](https://bdpowercast.netlify.app/)  
-**📚 API Docs** → [bd-powercast-api.onrender.com/docs](https://bd-powercast-api.onrender.com/docs)
+**Live Website:** [https://bdpowercast.netlify.app/](https://bdpowercast.netlify.app/)  
+**API Docs:** [https://bd-powercast-api.onrender.com/docs](https://bd-powercast-api.onrender.com/docs)
 
 </div>
 
 ---
 
-## ✨ What BD PowerCast Delivers
+## ✨ What BD PowerCast Does
 
-BD PowerCast blends rigorous machine-learning research with a fast, production-ready web experience so anyone can request electricity-demand forecasts for any future date or month.
+BD PowerCast combines machine-learning research with a production-ready web interface so users can request electricity-demand forecasts for future dates and months.
 
-### 📅 Daily Forecast
-- Average demand (**MW**)
-- Peak demand (**MW**)
-- Daily energy requirement (**MWh**)
+### Daily Forecast
+- Average demand in **MW**
+- Peak demand in **MW**
+- Daily energy requirement in **MWh**
 - Historical load-shedding risk score
 - Risk level: **Low / Medium / High**
 
-### 📆 Monthly Forecast
-- Total monthly energy requirement
+### Monthly Forecast
+- Monthly total energy requirement
 - Monthly average demand
-- Highest predicted peak demand + date
+- Highest predicted peak demand
+- Peak-demand date
 - Lowest-demand date
-- Full daily breakdown with visualization
+- Daily forecast visualization
+- Full daily forecast table
 - Monthly historical load-shedding risk indicator
 
-### 📈 Model Performance
-The dashboard also showcases the final evaluation of the best hourly research model.
+### Model Performance
+The dashboard also presents the final evaluation of the best hourly research model.
 
 ---
 
 ## 🌐 Live Demo
 
-### [→ Open BD PowerCast](https://bdpowercast.netlify.app/)
+### [Open BD PowerCast](https://bdpowercast.netlify.app/)
 
-**Architecture**
+The deployed system uses:
+
+- **Netlify** → React frontend
+- **Render** → FastAPI backend
+- **Scikit-learn / Joblib** → deployment forecasting models
 
 ```text
 User
  │
  ▼
-React + Vite  ──►  Netlify
- │
- │  HTTPS REST API
- ▼
-FastAPI  ──►  Render
- │
- ▼
-Saved ML Models (.pkl / .json / .csv)
-
- Research Model PerformanceThe strongest hourly forecasting architecture developed in this project:Adaptive Gated Ramp-Aware Model BMetric
-Final Test Result
-MAE
-206.39 MW
-RMSE
-287.70 MW
-MAPE
-1.83%
-R²
-0.9845
-
-Note: These metrics belong to the hourly research model.
-The live Daily & Monthly Forecast pages use a separate date-based deployment model optimized for arbitrary future dates.
- Forecasting ApproachBD PowerCast uses two complementary layers:1. Hourly Research ModelHigh-accuracy short-term forecasting powered by:Recent demand lags  
-Daily & weekly patterns  
-Rolling statistics  
-Ramp-aware features  
-Calendar effects  
-Adaptive gating
-
-Models evaluated: Seasonal Naive · Linear Regression · Random Forest · XGBoost · LightGBM · Custom PyTorch architectures2. Date-Based Deployment ModelUsed by the public web app for any future date. Combines:Long-term trend  
-Day-of-week effects  
-Weekend / Friday indicators  
-Monthly & annual seasonality  
-Residual learning
-
-Monthly forecasts are generated by predicting every day of the selected month and aggregating the results. Tech Stack<table>
-<tr>
-<td width="33%" valign="top">
-
-FrontendReact + Vite  
-React Router  
-Axios  
-Recharts  
-Modern CSS  
+React + Vite
 Netlify
-
-</td>
-<td width="33%" valign="top">
-
-BackendPython  
-FastAPI + Uvicorn  
-Pandas · NumPy  
-Scikit-learn · Joblib  
+ │
+ │ HTTPS REST API
+ ▼
+FastAPI
 Render
+ │
+ ▼
+Saved ML Models
+.pkl / .json / .csv
+```
+
+---
+
+## 📊 Research Model Performance
+
+The best hourly forecasting architecture developed in the project is the:
+
+### **Adaptive Gated Ramp-Aware Model B**
+
+| Metric | Final Test Result |
+|---|---:|
+| **MAE** | 206.39 MW |
+| **RMSE** | 287.70 MW |
+| **MAPE** | 1.83% |
+| **R²** | 0.9845 |
+
+> **Important:** These metrics belong to the hourly research model.  
+> The live Daily and Monthly Forecast pages use a separate date-based deployment model designed for arbitrary future dates.
+
+---
+
+## 🧠 Forecasting Approach
+
+BD PowerCast uses two complementary forecasting layers.
+
+### 1. Hourly Research Model
+Designed for high-accuracy short-term demand forecasting using:
+
+- Recent demand lags
+- Daily demand patterns
+- Weekly demand patterns
+- Rolling statistics
+- Ramp-aware features
+- Calendar information
+- Adaptive gating
+
+The research pipeline also evaluated:
+
+- Seasonal Naive
+- Linear Regression
+- Random Forest
+- XGBoost
+- LightGBM
+- Custom PyTorch architectures
+
+### 2. Date-Based Deployment Model
+Used by the public web application for arbitrary future dates.
+
+It combines:
+
+- Long-term trend
+- Day-of-week effects
+- Weekend / Friday indicators
+- Monthly seasonality
+- Annual seasonality
+- Residual learning
+
+Monthly forecasts are generated by predicting each day of the selected month and aggregating the results.
+
+---
+
+## 🛠️ Tech Stack
+
+<table>
+<tr>
+<td valign="top" width="33%">
+
+### Frontend
+- React
+- Vite
+- React Router
+- Axios
+- Recharts
+- CSS
+- Netlify
 
 </td>
-<td width="33%" valign="top">
+<td valign="top" width="33%">
 
-ML / ResearchPyTorch  
-LightGBM · XGBoost  
-Random Forest  
-Feature Engineering  
-Time-Series Evaluation
+### Backend
+- Python
+- FastAPI
+- Uvicorn
+- Pandas
+- NumPy
+- Scikit-learn
+- Joblib
+- Render
+
+</td>
+<td valign="top" width="33%">
+
+### ML / Research
+- PyTorch
+- LightGBM
+- XGBoost
+- Random Forest
+- Linear Regression
+- Feature Engineering
+- Time-Series Evaluation
 
 </td>
 </tr>
 </table>
 
- Project Structuretext
+---
 
+## 📁 Project Structure
+
+```text
 bd-powercast/
 │
 ├── backend/
+│   ├── __init__.py
 │   ├── main.py
 │   └── prediction.py
 │
@@ -141,9 +192,13 @@ bd-powercast/
 │   │   ├── pages/
 │   │   │   ├── DailyForecast.jsx
 │   │   │   └── MonthlyForecast.jsx
-│   │   ├── services/api.js
+│   │   ├── services/
+│   │   │   └── api.js
 │   │   ├── App.jsx
-│   │   └── ...
+│   │   ├── App.css
+│   │   ├── index.css
+│   │   └── main.jsx
+│   ├── index.html
 │   └── package.json
 │
 ├── models/
@@ -154,28 +209,55 @@ bd-powercast/
 │   ├── daily_model_config.json
 │   └── load_shedding_monthly_risk.csv
 │
-├── data/  figures/  notebooks/  results/
+├── data/
+├── figures/
+├── notebooks/
+├── results/
 ├── requirements.txt
 └── README.md
+```
 
- API EndpointsBase URL: https://bd-powercast-api.onrender.comHealth Checkhttp
+---
 
+## 🔌 API Endpoints
+
+Base URL:
+
+```text
+https://bd-powercast-api.onrender.com
+```
+
+### Health Check
+
+```http
 GET /health
+```
 
-json
+Response:
 
-{ "status": "ok" }
+```json
+{
+  "status": "ok"
+}
+```
 
-Daily Forecasthttp
+### Daily Forecast
 
+```http
 POST /predict/day
+```
 
-Requestjson
+Request:
 
-{ "date": "2026-08-10" }
+```json
+{
+  "date": "2026-08-10"
+}
+```
 
-Responsejson
+Example response:
 
+```json
 {
   "date": "2026-08-10",
   "average_demand_mw": 13972.52,
@@ -185,79 +267,189 @@ Responsejson
   "load_shedding_risk_level": "High",
   "risk_basis": "Recent historical monthly load-shedding rate"
 }
+```
 
-Monthly Forecasthttp
+### Monthly Forecast
 
+```http
 POST /predict/month
+```
 
-Requestjson
+Request:
 
-{ "year": 2026, "month": 1 }
+```json
+{
+  "year": 2026,
+  "month": 1
+}
+```
 
-Returns full monthly summary + daily forecasts for every day of the month. Run Locally1. Clonebash
+The monthly response includes:
 
+- Month and year
+- Monthly energy
+- Average demand
+- Highest peak demand
+- Peak-demand date
+- Lowest-demand date
+- Load-shedding risk
+- Daily forecasts for the full month
+
+---
+
+## 🚀 Run Locally
+
+### 1. Clone the repository
+
+```bash
 git clone <your-github-repository-url>
 cd bd-powercast
+```
 
-2. Backend Setupbash
+### 2. Create a Python virtual environment
 
-# Create & activate virtual environment
-python -m venv .venv          # Windows
-# or
-python3 -m venv .venv && source .venv/bin/activate   # macOS/Linux
+#### Windows
 
+```powershell
+python -m venv .venv
+.venv\Scripts\activate
+```
+
+#### macOS / Linux
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+### 3. Install backend dependencies
+
+```bash
 pip install -r requirements.txt
+```
 
-Start the API:bash
+### 4. Start FastAPI
 
+```bash
 python -m uvicorn backend.main:app --reload --host 127.0.0.1 --port 8000
+```
 
-Local API → http://127.0.0.1:8000  
-Swagger Docs → http://127.0.0.1:8000/docs
+Local API:
 
-3. Frontend Setupbash
+```text
+http://127.0.0.1:8000
+```
 
+Swagger docs:
+
+```text
+http://127.0.0.1:8000/docs
+```
+
+### 5. Install frontend dependencies
+
+Open another terminal:
+
+```bash
 cd frontend
 npm install
+```
 
-Create frontend/.env:env
+### 6. Create `frontend/.env`
 
+```env
 VITE_API_URL=http://127.0.0.1:8000
+```
 
-Run the app:bash
+### 7. Run React
 
+```bash
 npm run dev
+```
 
-Frontend → http://localhost:5173 DeploymentPlatform
-Settings
-Netlify
-Base: frontend
-Build: npm run build
-Publish: dist
-Env: VITE_API_URL=https://bd-powercast-api.onrender.com
-Render
-Build: pip install -r requirements.txt
-Start: uvicorn backend.main:app --host 0.0.0.0 --port $PORT
+Frontend:
 
- Load-Shedding Risk InterpretationThe risk score is a historical monthly indicator based on recent observed load-shedding frequency.It is not a calibrated probability that load shedding will occur on a specific future date. UnitsQuantity
-Unit
-Demand
-MW
-Daily Energy
-MWh
-Monthly Energy
-MWh
-Historical Risk Score
-%
+```text
+http://localhost:5173
+```
 
- Project GoalsExplore Bangladesh electricity-demand patterns  
-Compare classical and modern machine-learning methods  
-Build a high-accuracy custom hourly forecasting architecture  
-Deliver practical future-date planning forecasts  
-Present everything through a modern, accessible web application
+---
 
- DisclaimerBD PowerCast is intended for research, academic demonstration, and planning support.
-Forecasts are generated from historical patterns and model assumptions and should not be treated as guaranteed future electricity-system outcomes.<div align="center">
+## ☁️ Deployment
 
- BD PowerCastBangladesh Electricity Demand Forecasting & Load-Shedding Risk PredictionLive Website · API · API Docs</div>
+### Netlify
 
+```text
+Base directory: frontend
+Build command: npm run build
+Publish directory: dist
+```
+
+Environment variable:
+
+```env
+VITE_API_URL=https://bd-powercast-api.onrender.com
+```
+
+### Render
+
+Build command:
+
+```bash
+pip install -r requirements.txt
+```
+
+Start command:
+
+```bash
+uvicorn backend.main:app --host 0.0.0.0 --port $PORT
+```
+
+---
+
+## ⚠️ Load-Shedding Risk Interpretation
+
+The load-shedding score shown by BD PowerCast is a **historical monthly risk indicator** based on recent observed load-shedding frequency.
+
+It is **not** a calibrated probability that load shedding will occur on a specific future date.
+
+---
+
+## 📏 Units
+
+| Quantity | Unit |
+|---|---|
+| Demand | MW |
+| Daily Energy | MWh |
+| Monthly Energy | MWh |
+| Historical Risk Score | % |
+
+---
+
+## 🎯 Project Goals
+
+BD PowerCast was designed to:
+
+- Explore Bangladesh electricity-demand patterns
+- Compare traditional and machine-learning forecasting methods
+- Develop a custom high-accuracy hourly forecasting architecture
+- Provide practical future-date planning forecasts
+- Present predictions through a modern, accessible web application
+
+---
+
+## 📌 Disclaimer
+
+BD PowerCast is intended for **research, academic demonstration, and planning support**. Forecasts are generated from historical patterns and model assumptions and should not be treated as guaranteed future electricity-system outcomes.
+
+---
+
+<div align="center">
+
+### ⚡ BD PowerCast
+
+**Bangladesh Electricity Demand Forecasting & Load-Shedding Risk Prediction**
+
+[Live Website](https://bdpowercast.netlify.app/) · [API](https://bd-powercast-api.onrender.com) · [API Docs](https://bd-powercast-api.onrender.com/docs)
+
+</div>
