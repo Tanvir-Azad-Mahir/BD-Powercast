@@ -1,90 +1,143 @@
-# BD PowerCast
+<div align="center">
 
-**BD PowerCast** is a Bangladesh-focused electricity demand forecasting system that provides daily and monthly demand forecasts together with a historical load-shedding risk indicator.
+# ⚡ BD PowerCast
 
-🌐 **Live Website:** https://bdpowercast.netlify.app/  
-⚙️ **Backend API:** https://bd-powercast-api.onrender.com  
-📘 **API Docs:** https://bd-powercast-api.onrender.com/docs
+### Bangladesh Electricity Demand Forecasting & Load-Shedding Risk Prediction
 
----
+A modern forecasting platform for estimating **daily and monthly electricity demand in Bangladesh**, identifying **peak-demand periods**, and presenting a **historical load-shedding risk indicator** through an interactive web dashboard.
 
-## Overview
+[![Live App](https://img.shields.io/badge/Live%20App-Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white)](https://bdpowercast.netlify.app/)
+[![API](https://img.shields.io/badge/API-FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://bd-powercast-api.onrender.com)
+[![React](https://img.shields.io/badge/Frontend-React-61DAFB?style=for-the-badge&logo=react&logoColor=111827)](https://react.dev/)
+[![Python](https://img.shields.io/badge/Backend-Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 
-BD PowerCast was developed as a forecasting and planning tool for Bangladesh's electricity system. The project combines machine-learning research with a web-based deployment layer so users can select a future date or month and receive electricity-demand estimates through a simple dashboard.
+**Live Website:** [https://bdpowercast.netlify.app/](https://bdpowercast.netlify.app/)  
+**API Docs:** [https://bd-powercast-api.onrender.com/docs](https://bd-powercast-api.onrender.com/docs)
 
-The system supports:
-
-- Daily electricity-demand forecasting
-- Monthly electricity-demand forecasting
-- Predicted average demand in MW
-- Predicted peak demand in MW
-- Estimated daily and monthly energy in MWh
-- Highest-demand date identification
-- Lowest-demand date identification
-- Historical monthly load-shedding risk indication
-- Interactive demand visualization
-- Model-performance reporting
+</div>
 
 ---
 
-## Live Application
+## ✨ What BD PowerCast Does
 
-Visit the deployed application here:
-
-**https://bdpowercast.netlify.app/**
-
-The frontend is deployed on **Netlify**, while the FastAPI backend is deployed separately and serves the forecasting models through REST API endpoints.
-
----
-
-## Main Features
+BD PowerCast combines machine-learning research with a production-ready web interface so users can request electricity-demand forecasts for future dates and months.
 
 ### Daily Forecast
-
-Users can select a date and receive:
-
-- Average electricity demand
-- Peak electricity demand
-- Daily energy requirement
+- Average demand in **MW**
+- Peak demand in **MW**
+- Daily energy requirement in **MWh**
 - Historical load-shedding risk score
-- Risk level: Low, Medium, or High
+- Risk level: **Low / Medium / High**
 
 ### Monthly Forecast
-
-Users can select a month and receive:
-
 - Monthly total energy requirement
 - Monthly average demand
 - Highest predicted peak demand
-- Expected peak-demand date
+- Peak-demand date
 - Lowest-demand date
-- Historical monthly load-shedding risk
-- Daily forecast table
-- Interactive demand chart
+- Daily forecast visualization
+- Full daily forecast table
+- Monthly historical load-shedding risk indicator
 
 ### Model Performance
-
-The application also includes a model-performance page that presents the final evaluation results of the best hourly research model.
-
-Final hourly research model results:
-
-| Metric | Result |
-|---|---:|
-| MAE | 206.39 MW |
-| RMSE | 287.70 MW |
-| MAPE | 1.83% |
-| R² | 0.9845 |
-
-The best hourly research architecture is the **Adaptive Gated Ramp-Aware Model B**.
-
-> The hourly research model and the date-based deployment model are separate. The 1.83% MAPE belongs to the hourly research model and should not be interpreted as the accuracy of arbitrary future-date forecasts.
+The dashboard also presents the final evaluation of the best hourly research model.
 
 ---
 
-## Technology Stack
+## 🌐 Live Demo
+
+### [Open BD PowerCast](https://bdpowercast.netlify.app/)
+
+The deployed system uses:
+
+- **Netlify** → React frontend
+- **Render** → FastAPI backend
+- **Scikit-learn / Joblib** → deployment forecasting models
+
+```text
+User
+ │
+ ▼
+React + Vite
+Netlify
+ │
+ │ HTTPS REST API
+ ▼
+FastAPI
+Render
+ │
+ ▼
+Saved ML Models
+.pkl / .json / .csv
+```
+
+---
+
+## 📊 Research Model Performance
+
+The best hourly forecasting architecture developed in the project is the:
+
+### **Adaptive Gated Ramp-Aware Model B**
+
+| Metric | Final Test Result |
+|---|---:|
+| **MAE** | 206.39 MW |
+| **RMSE** | 287.70 MW |
+| **MAPE** | 1.83% |
+| **R²** | 0.9845 |
+
+> **Important:** These metrics belong to the hourly research model.  
+> The live Daily and Monthly Forecast pages use a separate date-based deployment model designed for arbitrary future dates.
+
+---
+
+## 🧠 Forecasting Approach
+
+BD PowerCast uses two complementary forecasting layers.
+
+### 1. Hourly Research Model
+Designed for high-accuracy short-term demand forecasting using:
+
+- Recent demand lags
+- Daily demand patterns
+- Weekly demand patterns
+- Rolling statistics
+- Ramp-aware features
+- Calendar information
+- Adaptive gating
+
+The research pipeline also evaluated:
+
+- Seasonal Naive
+- Linear Regression
+- Random Forest
+- XGBoost
+- LightGBM
+- Custom PyTorch architectures
+
+### 2. Date-Based Deployment Model
+Used by the public web application for arbitrary future dates.
+
+It combines:
+
+- Long-term trend
+- Day-of-week effects
+- Weekend / Friday indicators
+- Monthly seasonality
+- Annual seasonality
+- Residual learning
+
+Monthly forecasts are generated by predicting each day of the selected month and aggregating the results.
+
+---
+
+## 🛠️ Tech Stack
+
+<table>
+<tr>
+<td valign="top" width="33%">
 
 ### Frontend
-
 - React
 - Vite
 - React Router
@@ -93,8 +146,10 @@ The best hourly research architecture is the **Adaptive Gated Ramp-Aware Model B
 - CSS
 - Netlify
 
-### Backend
+</td>
+<td valign="top" width="33%">
 
+### Backend
 - Python
 - FastAPI
 - Uvicorn
@@ -104,23 +159,25 @@ The best hourly research architecture is the **Adaptive Gated Ramp-Aware Model B
 - Joblib
 - Render
 
-### Machine Learning
+</td>
+<td valign="top" width="33%">
 
-The research phase included:
-
-- Seasonal Naive forecasting
-- Linear Regression
-- Random Forest
-- XGBoost
+### ML / Research
+- PyTorch
 - LightGBM
-- Custom PyTorch forecasting models
-- Adaptive Gated Ramp-Aware Model B
+- XGBoost
+- Random Forest
+- Linear Regression
+- Feature Engineering
+- Time-Series Evaluation
 
-For arbitrary future dates, the deployed planning model uses date-based trend and seasonal information.
+</td>
+</tr>
+</table>
 
 ---
 
-## Project Structure
+## 📁 Project Structure
 
 ```text
 bd-powercast/
@@ -153,16 +210,22 @@ bd-powercast/
 │   └── load_shedding_monthly_risk.csv
 │
 ├── data/
-├── results/
 ├── figures/
 ├── notebooks/
+├── results/
 ├── requirements.txt
 └── README.md
 ```
 
 ---
 
-## API Endpoints
+## 🔌 API Endpoints
+
+Base URL:
+
+```text
+https://bd-powercast-api.onrender.com
+```
 
 ### Health Check
 
@@ -170,7 +233,7 @@ bd-powercast/
 GET /health
 ```
 
-Example response:
+Response:
 
 ```json
 {
@@ -184,7 +247,7 @@ Example response:
 POST /predict/day
 ```
 
-Example request:
+Request:
 
 ```json
 {
@@ -212,7 +275,7 @@ Example response:
 POST /predict/month
 ```
 
-Example request:
+Request:
 
 ```json
 {
@@ -221,17 +284,20 @@ Example request:
 }
 ```
 
-The response contains:
+The monthly response includes:
 
-- Monthly summary values
+- Month and year
+- Monthly energy
+- Average demand
+- Highest peak demand
 - Peak-demand date
 - Lowest-demand date
-- Load-shedding risk indicator
-- Daily forecasts for the complete month
+- Load-shedding risk
+- Daily forecasts for the full month
 
 ---
 
-## Local Setup
+## 🚀 Run Locally
 
 ### 1. Clone the repository
 
@@ -242,14 +308,14 @@ cd bd-powercast
 
 ### 2. Create a Python virtual environment
 
-Windows:
+#### Windows
 
 ```powershell
 python -m venv .venv
 .venv\Scripts\activate
 ```
 
-macOS/Linux:
+#### macOS / Linux
 
 ```bash
 python3 -m venv .venv
@@ -262,21 +328,19 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### 4. Start the FastAPI backend
-
-From the project root:
+### 4. Start FastAPI
 
 ```bash
 python -m uvicorn backend.main:app --reload --host 127.0.0.1 --port 8000
 ```
 
-Backend:
+Local API:
 
 ```text
 http://127.0.0.1:8000
 ```
 
-Swagger API documentation:
+Swagger docs:
 
 ```text
 http://127.0.0.1:8000/docs
@@ -291,21 +355,13 @@ cd frontend
 npm install
 ```
 
-### 6. Configure the frontend API URL
-
-Create:
-
-```text
-frontend/.env
-```
-
-Add:
+### 6. Create `frontend/.env`
 
 ```env
 VITE_API_URL=http://127.0.0.1:8000
 ```
 
-### 7. Start React
+### 7. Run React
 
 ```bash
 npm run dev
@@ -319,13 +375,9 @@ http://localhost:5173
 
 ---
 
-## Deployment
+## ☁️ Deployment
 
-### Frontend
-
-The React frontend is deployed with **Netlify**.
-
-Recommended Netlify settings:
+### Netlify
 
 ```text
 Base directory: frontend
@@ -339,9 +391,7 @@ Environment variable:
 VITE_API_URL=https://bd-powercast-api.onrender.com
 ```
 
-### Backend
-
-The FastAPI backend is deployed with **Render**.
+### Render
 
 Build command:
 
@@ -357,45 +407,49 @@ uvicorn backend.main:app --host 0.0.0.0 --port $PORT
 
 ---
 
-## Load-Shedding Risk
+## ⚠️ Load-Shedding Risk Interpretation
 
-The load-shedding value shown by BD PowerCast is a **historical monthly risk indicator** based on recent load-shedding frequency.
+The load-shedding score shown by BD PowerCast is a **historical monthly risk indicator** based on recent observed load-shedding frequency.
 
-It should not be interpreted as a calibrated probability that load shedding will occur on a specific future date.
-
----
-
-## Units
-
-- **Demand:** MW
-- **Daily Energy:** MWh
-- **Monthly Energy:** MWh
-- **Load-Shedding Risk Score:** %
+It is **not** a calibrated probability that load shedding will occur on a specific future date.
 
 ---
 
-## Research Note
+## 📏 Units
 
-The project contains two forecasting layers:
-
-1. **Hourly research forecasting model**  
-   Designed for high-accuracy short-term electricity-demand forecasting using historical demand, temporal lags, rolling statistics, calendar information, and ramp-aware features.
-
-2. **Date-based deployment model**  
-   Designed to support arbitrary future dates and months in the public web application when future lagged demand values are not available.
-
-This separation allows the research model to remain technically valid while providing a practical web-based planning interface.
+| Quantity | Unit |
+|---|---|
+| Demand | MW |
+| Daily Energy | MWh |
+| Monthly Energy | MWh |
+| Historical Risk Score | % |
 
 ---
 
-## Disclaimer
+## 🎯 Project Goals
 
-BD PowerCast is intended for research, demonstration, and planning purposes. Forecasts depend on historical patterns and model assumptions and should not be treated as guaranteed future electricity-system outcomes.
+BD PowerCast was designed to:
+
+- Explore Bangladesh electricity-demand patterns
+- Compare traditional and machine-learning forecasting methods
+- Develop a custom high-accuracy hourly forecasting architecture
+- Provide practical future-date planning forecasts
+- Present predictions through a modern, accessible web application
 
 ---
 
-## Project
+## 📌 Disclaimer
 
-**BD PowerCast — Bangladesh Electricity Demand Forecasting & Load-Shedding Risk Prediction**
+BD PowerCast is intended for **research, academic demonstration, and planning support**. Forecasts are generated from historical patterns and model assumptions and should not be treated as guaranteed future electricity-system outcomes.
 
-Live application: **https://bdpowercast.netlify.app/**
+---
+
+<div align="center">
+
+### ⚡ BD PowerCast
+
+**Bangladesh Electricity Demand Forecasting & Load-Shedding Risk Prediction**
+
+[Live Website](https://bdpowercast.netlify.app/) · [API](https://bd-powercast-api.onrender.com) · [API Docs](https://bd-powercast-api.onrender.com/docs)
+
+</div>
