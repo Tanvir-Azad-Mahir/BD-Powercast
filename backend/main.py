@@ -14,9 +14,9 @@ app = FastAPI(
 )
 
 
-# ============================================================
+
 # CORS
-# ============================================================
+
 
 app.add_middleware(
     CORSMiddleware,
@@ -31,22 +31,19 @@ app.add_middleware(
 )
 
 
-# ============================================================
+
 # REQUEST MODELS
-# ============================================================
 
 class DateRequest(BaseModel):
     date: str
-
 
 class MonthRequest(BaseModel):
     year: int
     month: int
 
 
-# ============================================================
 # BASIC ROUTES
-# ============================================================
+
 
 @app.get("/")
 def root():
@@ -62,9 +59,9 @@ def health():
     }
 
 
-# ============================================================
+
 # DAILY FORECAST
-# ============================================================
+
 
 @app.post("/predict/day")
 def predict_day(request: DateRequest):
@@ -80,9 +77,9 @@ def predict_day(request: DateRequest):
         )
 
 
-# ============================================================
+
 # MONTHLY FORECAST
-# ============================================================
+
 
 @app.post("/predict/month")
 def predict_month_endpoint(
